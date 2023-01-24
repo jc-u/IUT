@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import Card from "./Card";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,8 +7,8 @@ import { faCircleMinus, faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
 function FoldableCard(props) {
   const { title, children, opened } = props;
-  const className = "foldable"
-  
+  const [isShown, setIsShown] = useState(opened)
+  const className = `foldable${isShown ? "" : " hidden"}`;
 
   return (
     <Card
@@ -17,12 +17,13 @@ function FoldableCard(props) {
         {title}
         <FontAwesomeIcon
         className="foldable-icon"
-        icon={opened ? faCircleMinus : faCirclePlus}
+        icon={isShown ? faCircleMinus : faCirclePlus}
       />
     </>
       }
-      className={opened ? "foldable shown" : className}
-      children={opened ? children : ""}>
+      className={className}
+      onClick={() => setIsShown(!isShown) }
+      children={isShown && children}>
       </Card>
   );
 }
