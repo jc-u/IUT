@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Card from "./Card";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,11 +7,11 @@ import useShowable from "./hooks/useShowable";
 
 function FoldableCard(props) {
   const { title, children, opened, onToggleOpened } = props;
-  const { isShown, className, toggleShown } = useShowable(
+  const { isShown, className, toggleShown, setIsShown } = useShowable(
     opened,
     "foldable"
   );
-
+  useEffect(() => setIsShown(opened), [opened]);
   const handleClick = () => {
     toggleShown();
     if (onToggleOpened !== undefined) {
