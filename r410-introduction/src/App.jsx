@@ -4,9 +4,7 @@ import cardsData from "./constants/cardsData";
 
 
 function App() {
-  const clickHandler = () => {
-    console.log("Carte cliquée !");
-    }
+
   return (
     <div className="app">
       <header className="app__header header">
