@@ -1,7 +1,7 @@
 import React from 'react';
-import FoldableCard from './FoldableCard';
-import Card from './Card'
 import Cards from './Cards';
+import cardsData from "./constants/cardsData";
+
 
 function App() {
   const clickHandler = () => {
@@ -12,11 +12,10 @@ function App() {
       <header className="app__header header">
         <h1 className="header__title">Introduction to React</h1>
       </header>
-      <Cards/>
-        <Card title={"Titre 1"} children={"Contenu 1"}/>
-        <Card title={"Titre 2"} children={"Contenu 2"}/>
-        <Card title={"Titre 3"} children={"Contenu 3"} onClick={clickHandler}/>
-        <FoldableCard title={"Titre 4"} children={"Contenu 4"}/>
+      <main className="app__main">
+        <Cards cardsData={cardsData} />
+      </main>
+      <footer className="app__footer footer">footer</footer>
     </div>
   );
 }
