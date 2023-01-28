@@ -6,7 +6,7 @@ import { faCircleMinus, faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import useShowable from "./hooks/useShowable";
 
 function FoldableCard(props) {
-  const { title, children, opened } = props;
+  const { title, children, opened, onToggleOpened } = props;
   const { isShown, className, toggleShown } = useShowable(
     opened,
     "foldable"
@@ -14,6 +14,9 @@ function FoldableCard(props) {
 
   const handleClick = () => {
     toggleShown();
+    if (onToggleOpened !== undefined) {
+      onToggleOpened(!isShown);
+    }
   };
 
   return (
@@ -38,12 +41,14 @@ FoldableCard.defaultProps = {
   title: "Title",
   children: "Content",
   opened: false,
+  onToggleOpened: undefined,
 };
 
 FoldableCard.propTypes = {
   title: PropTypes.node,
   children: PropTypes.node,
   opened: PropTypes.bool,
+  onToggleOpened: PropTypes.func,
 };
 
 export default FoldableCard;

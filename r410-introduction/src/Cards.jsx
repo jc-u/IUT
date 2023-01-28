@@ -11,11 +11,13 @@ function Cards(props) {
       key={data.id}
       title={data.title}
       opened={openedIndex === index} 
+      onToggleOpened={(isShown) => isShown && setOpenedIndex(index)}
     >
       {data.content}
     </FoldableCard>
   ));
   return <div className="cards">{foldableCards}
+  {console.log(openedIndex)}
 </div>;
 }
 
