@@ -12,6 +12,7 @@ function FoldableCard(props) {
     "foldable"
   );
   useEffect(() => setIsShown(opened), [opened]);
+  console.log(opened)
   const handleClick = () => {
     toggleShown();
     if (onToggleOpened !== undefined) {
