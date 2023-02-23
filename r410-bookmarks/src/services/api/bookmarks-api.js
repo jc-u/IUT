@@ -5,3 +5,7 @@ export function fetchAllBookmarks(urlSearchParams) {
     response.json()
   );
 }
+
+export function avatarUrl(userId) {
+  return `${BASE_URL}/users/${userId}/avatar`;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllBookmarks } from "../services/api/bookmarks-api";
+import BookmarkItem from "./BookmarkItem";
 
 function BookmarksList() {
   const [bookmarksData, setBookmarksData] = useState([]);
@@ -13,7 +14,9 @@ function BookmarksList() {
 
   useEffect(() => {
     setBoormarksList(
-      bookmarksData.map((bookmark) => <div>{bookmark.name}</div>)
+      bookmarksData.map((bookmark) => (
+        <BookmarkItem key={bookmark.id} data={bookmark} />
+      ))
     );
   }, [bookmarksData]);
 
