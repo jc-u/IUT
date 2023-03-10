@@ -9,3 +9,17 @@ export function fetchAllBookmarks(urlSearchParams) {
 export function avatarUrl(userId) {
   return `${BASE_URL}/users/${userId}/avatar`;
 }
+
+export function getMe() {
+  return fetch(`${BASE_URL}/me`, { credentials: "include" }).then((response) =>
+    response.ok ? response.json() : Promise.resolve(null)
+  );
+}
+
+export function loginUrl() {
+  return `${BASE_URL}/login?redirect=${window.location}`;
+}
+
+export function logoutUrl() {
+  return `${BASE_URL}/logout`;
+}
