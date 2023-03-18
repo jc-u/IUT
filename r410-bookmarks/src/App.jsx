@@ -3,6 +3,7 @@ import BookmarksList from "./components/BookmarksList";
 import Header from "./components/Header";
 import UserProvider from "./contexts/user/Provider"
 import ColorsProvider from "./contexts/colors/Provider"
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <main className="App__main">
             <BookmarksList />
           </main>
-          <footer>footer</footer>
+          <Footer />
         </div>
       </UserProvider>
     </ColorsProvider>
