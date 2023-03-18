@@ -2,19 +2,21 @@ import React from "react";
 import BookmarksList from "./components/BookmarksList";
 import Header from "./components/Header";
 import UserProvider from "./contexts/user/Provider"
+import ColorsProvider from "./contexts/colors/Provider"
 
 function App() {
   return (
-    <UserProvider>
-      <div className="App">
-      <Header title="Bookmarks!" />
-        <main className="App__main">
-          <BookmarksList />
-        </main>
-        <footer>footer</footer>
-      </div>
-    </UserProvider>
-
+    <ColorsProvider>
+      <UserProvider>
+        <div className="App">
+          <Header title="Bookmarks!" />
+          <main className="App__main">
+            <BookmarksList />
+          </main>
+          <footer>footer</footer>
+        </div>
+      </UserProvider>
+    </ColorsProvider>
   );
 }
 
