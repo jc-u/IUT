@@ -23,3 +23,11 @@ export function loginUrl() {
 export function logoutUrl() {
   return `${BASE_URL}/logout`;
 }
+
+export function fetchBookmark(bookmarkId) {
+  return fetch(`${BASE_URL}/bookmarks/${bookmarkId}`, {
+    credentials: "include",
+  }).then((response) =>
+    response.ok ? response.json() : Promise.resolve(null)
+  );
+}
