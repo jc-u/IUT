@@ -10,6 +10,7 @@ import {
   faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+import BookmarkDetail from "../components/BookmarkDetail";
 
 
 function Bookmarks() {
@@ -57,7 +58,7 @@ function Bookmarks() {
             edit: { icon: faEdit, to: `/bookmarks/${bookmarkId}/edit` },
           }}
         />
-      {!bookmark ? <Loading /> : <div>Detail {bookmark.name}</div>}
+      {!bookmark ? <Loading /> : <BookmarkDetail data={bookmark} />}
       </Route>
       <Route path="/bookmarks/:bookmarkId/edit">
       <Menu
