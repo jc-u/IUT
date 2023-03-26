@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BookmarksList from "../components/BookmarksList";
 import { Redirect, Route, Switch, useLocation, useRoute } from "wouter";
 import Loading from "../components/Loading";
-import { fetchBookmark } from "../services/api/bookmarks-api";
+import { deleteBookmark, fetchBookmark } from "../services/api/bookmarks-api";
 import Menu from "../components/Menu";
 import {
   faEdit,
@@ -34,10 +34,9 @@ function Bookmarks() {
 
   function handleDelete() {
     setBookmark();
-    setTimeout(() => {
+    deleteBookmark(bookmarkId).then(() => {
       setLocation("/bookmarks");
-    }, 1000);
-    console.log("delete");
+    });
   }
 
 

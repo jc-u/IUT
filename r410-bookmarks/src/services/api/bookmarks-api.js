@@ -59,3 +59,11 @@ export function patchBookmark(bookmark) {
     response.json()
   );
 }
+
+export function deleteBookmark(bookmarkId) {
+  const init = {
+    method: "DELETE",
+    credentials: "include",
+  };
+  return fetch(`${BASE_URL}/bookmarks/${bookmarkId}`, init);
+}
