@@ -43,6 +43,8 @@ body {
   border-radius: .25em;
   position: relative;
   overflow: hidden;
+  gap: .5em;
+  align-items: center;
 }
 .BookmarkItem__link {
   flex: 1;
@@ -127,4 +129,14 @@ body {
   margin: .5em 0 0;
   font-family: inherit;
   font-size: 1em;
+}
+
+.button {
+  border: 2px solid #e9ad5a;
+  border-radius: .25em;
+  background-color: transparent;
+  color: #e9ad5a;
+  font-size: 1em;
+  padding: .5em;
+  cursor: pointer;
 }
