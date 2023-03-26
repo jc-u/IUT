@@ -26,6 +26,7 @@ const subMenuType = PropTypes.objectOf(
     icon: PropTypes.object.isRequired,
     to: PropTypes.string,
     on: PropTypes.func,
+    hidden: PropTypes.bool,
   })
 );
 

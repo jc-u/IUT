@@ -4,7 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "wouter";
 
 function MenuButton(props) {
-  const { icon, to, on } = props;
+  const { icon, to, on, hidden } = props;
+
+  if (hidden) {
+    return null;
+  }
 
   const button = (
     <button type="button" className="MenuButton" onClick={on}>
@@ -20,11 +24,13 @@ MenuButton.propTypes = {
   icon: PropTypes.object.isRequired,
   to: PropTypes.string,
   on: PropTypes.func,
+  hidden: PropTypes.bool,
 };
 
 MenuButton.defaultProps = {
   to: null,
   on: null,
+  hidden: false,
 };
 
 export default MenuButton;
