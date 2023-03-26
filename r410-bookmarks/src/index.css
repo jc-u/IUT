@@ -140,3 +140,31 @@ body {
   padding: .5em;
   cursor: pointer;
 }
+
+.Menu {
+  display: flex;
+  border-top: 2px solid #59634c;
+  border-bottom: 2px solid #59634c;
+  padding: .25em 0;
+}
+.Menu__right {
+  flex: 1;
+  display: flex;
+  justify-content: right;
+}
+.Menu__left {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+}
+
+.MenuButton {
+  background-color: #2f2f2c;
+  color: #e9ad5a;
+  border: 2px solid #e9ad5a;
+  border-radius: .25em;
+  padding: .25em;
+  cursor: pointer;
+  width: 2.5em
+}
+
