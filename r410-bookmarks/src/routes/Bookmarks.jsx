@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BookmarksList from "../components/BookmarksList";
 import { Redirect, Route, Switch, useLocation, useRoute } from "wouter";
 import Loading from "../components/Loading";
@@ -12,10 +12,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import BookmarkDetail from "../components/BookmarkDetail";
 import BookmarkForm from "../components/BookmarkForm";
-
+import userContext from "../contexts/user";
 
 function Bookmarks() {
 
+  const { userData } = useContext(userContext);
   const [, setLocation] = useLocation();
   const [, params] = useRoute("/bookmarks/:bookmarkId?/:edit?");
   const { bookmarkId } = params;
@@ -44,7 +45,15 @@ function Bookmarks() {
   return (
     <Switch>
       <Route path="/bookmarks">
-      <Menu right={{ create: { icon: faPlus, to: "/bookmarks/create" } }} />
+      <Menu
+          right={{
+            create: {
+              icon: faPlus,
+              to: "/bookmarks/create",
+              hidden: !userData?.id,
+            },
+          }}
+        />
         <BookmarksList />
       </Route>
       <Route path="/bookmarks/create">
@@ -55,23 +64,32 @@ function Bookmarks() {
       <Menu
           left={{ back: { icon: faLeftLong, to: "/bookmarks" } }}
           right={{
-            edit: { icon: faEdit, to: `/bookmarks/${bookmarkId}/edit` },
+            edit: {
+              icon: faEdit,
+              to: `/bookmarks/${bookmarkId}/edit`,
+              hidden: !userData?.id || userData.id !== bookmark?.owner.id,
+            },
           }}
         />
       {!bookmark ? <Loading /> : <BookmarkDetail data={bookmark} />}
       </Route>
-      <Route path="/bookmarks/:bookmarkId/edit">
-      <Menu
-          left={{ back: { icon: faLeftLong, to: `/bookmarks/${bookmarkId}` } }}
-          right={{
-            delete: {
-              icon: faTrash,
-              on: handleDelete,
-            },
-          }}
-        />
-      {!bookmark ? <Loading /> : <BookmarkForm data={bookmark} />}
-      </Route>
+      {userData && userData.id === bookmark?.owner.id && (
+        <Route path="/bookmarks/:bookmarkId/edit">
+          <Menu
+            left={{
+              back: { icon: faLeftLong, to: `/bookmarks/${bookmarkId}` },
+            }}
+            right={{
+              delete: {
+                icon: faTrash,
+                on: handleDelete,
+                hidden: !userData?.id || userData.id !== bookmark?.owner.id,
+              },
+            }}
+          />
+          {!bookmark ? <Loading /> : <BookmarkForm data={bookmark} />}
+        </Route>
+      )}
       <Route>
         <Redirect to="/bookmarks" />
       </Route>
