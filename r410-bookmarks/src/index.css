@@ -168,3 +168,27 @@ body {
   width: 2.5em
 }
 
+.BookmarkForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.BookmarkForm__item {
+  display: flex;
+  flex-direction: column;
+}
+.BookmarkForm__input, .BookmarkForm__button {
+  background-color: #2f2f2c;
+  border: 2px solid #e9ad5a;
+  border-radius: .25em;
+  color:#ddd9ce;
+  font-family: inherit;
+  font-size: 1em;
+  padding: .25em;
+}
+.BookmarkForm__button {
+  cursor: pointer;
+  background-color: #59634c;
+}
+
+

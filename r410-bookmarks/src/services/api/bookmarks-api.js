@@ -1,9 +1,9 @@
 export const BASE_URL = "https://iut-rcc-infoapi.univ-reims.fr/bookmarks";
 
 export function fetchAllBookmarks(urlSearchParams) {
-  return fetch(`${BASE_URL}/bookmarks?${urlSearchParams}`).then((response) =>
-    response.json()
-  );
+  return fetch(`${BASE_URL}/bookmarks?${urlSearchParams}`, {
+    credentials: "include",
+  }).then((response) => response.json());
 }
 
 export function avatarUrl(userId) {
@@ -29,5 +29,33 @@ export function fetchBookmark(bookmarkId) {
     credentials: "include",
   }).then((response) =>
     response.ok ? response.json() : Promise.resolve(null)
+  );
+}
+
+export function postBookmark(bookmark) {
+  const init = {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(bookmark),
+  };
+  return fetch(`${BASE_URL}/bookmarks`, init).then((response) =>
+    response.json()
+  );
+}
+
+export function patchBookmark(bookmark) {
+  const init = {
+    method: "PATCH",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/merge-patch+json",
+    },
+    body: JSON.stringify(bookmark),
+  };
+  return fetch(`${BASE_URL}/bookmarks/${bookmark.id}`, init).then((response) =>
+    response.json()
   );
 }

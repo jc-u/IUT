@@ -11,6 +11,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import BookmarkDetail from "../components/BookmarkDetail";
+import BookmarkForm from "../components/BookmarkForm";
 
 
 function Bookmarks() {
@@ -49,7 +50,7 @@ function Bookmarks() {
       </Route>
       <Route path="/bookmarks/create">
       <Menu left={{ back: { icon: faLeftLong, to: "/bookmarks" } }} />
-        <div>Create</div>
+      <BookmarkForm />
       </Route>
       <Route path="/bookmarks/:bookmarkId">
       <Menu
@@ -70,7 +71,7 @@ function Bookmarks() {
             },
           }}
         />
-      {!bookmark ? <Loading /> : <div>Edit {bookmark.name}</div>}
+      {!bookmark ? <Loading /> : <BookmarkForm data={bookmark} />}
       </Route>
       <Route>
         <Redirect to="/bookmarks" />
