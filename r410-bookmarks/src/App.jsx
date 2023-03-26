@@ -4,7 +4,15 @@ import Bookmarks from "./routes/Bookmarks";
 import Header from "./components/Header";
 import UserProvider from "./contexts/user/Provider";
 import ColorsProvider from "./contexts/colors/Provider";
-@@ -14,7 +15,14 @@ function App() {
+import Footer from "./components/Footer";
+import Providers from "./components/Providers";
+import Error from "./components/Error";
+
+const providers = [ColorsProvider, UserProvider];
+
+function App() {
+  return (
+    <Providers providers={providers}>
       <div className="App">
         <Header title="Bookmarks!" />
         <main className="App__main">
@@ -14,6 +22,9 @@ import ColorsProvider from "./contexts/colors/Provider";
             </Route>
             <Route path="/bookmarks/:sub*">
               <Bookmarks />
+            </Route>
+            <Route>
+              <Error />
             </Route>
           </Switch>
         </main>
